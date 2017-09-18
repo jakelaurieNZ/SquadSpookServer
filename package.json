@@ -1,0 +1,13 @@
+{
+  "name": "spook_server",
+  "version": "1.0.0",
+  "description": "Server for SquadSpook",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Jake Laurie",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4",
+    "ws": "^3.2.0"
+  }
+}
