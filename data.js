@@ -25,7 +25,6 @@ function init(socketAddress) {
         var server = JSON.parse(data)['server']
 
         if(server != null) {
-            console.log(server['id'], new Date())
             client.set(server['id'], data, 'EX', 240); //Expires in four minutes
         } else {
             console.log('fail')
