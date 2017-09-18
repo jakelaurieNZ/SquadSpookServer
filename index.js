@@ -1,23 +1,15 @@
 const express = require('express')
 const app = express()
-const WebSocket = require('ws')
+const data = require('./data')
+
+data.init('wss://playsquad.online/servers/live/')
 
 app.get('/', function(req, res) {
-
+    data.retrieveAll(function(replies) {
+        res.send(replies)
+    })
 })
 
 app.listen(3000, function() {
     console.log('listening on port 3000')
 })
-
-const ws = new WebSocket('wss://playsquad.online/servers/live/', {
-    perMessageDeflate: false
-})
-
-ws.on('open', function open() {
-    console.log('connected')
-})
-
-ws.on('message', function incoming(data) {
-    console.log(data);
-});
