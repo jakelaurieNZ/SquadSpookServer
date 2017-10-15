@@ -35,7 +35,20 @@ function init(socketAddress) {
 function retrieveAll(callback) {
     client.keys('*', function (err, replies) {
         client.mget(replies, function (err, replies) {
-            callback(replies)
+            var response = new Object()
+            var servers = []
+            if(err != null) {
+                response["status"] = "error"
+                response["message"] = err.message
+                response["servers"] = null
+            } else {
+                response["status"] = "success"
+                response["servers"] = []
+                replies.forEach(function(reply) {
+                    response["servers"].push(JSON.parse(reply))
+                })
+            }
+            callback(response)
         })
     })
 }
